@@ -1,9 +1,10 @@
-測試文  
 exercise01  
+=============================================
 使用02-optimize中的hillClimbingSimple.js來做修改  
-    function f(x) {return  -(x*x*x*x - 10*x*x*x + 20*x*x + 5*x + 7)}  
+    `function f(x) {return  -(x*x*x*x - 10*x*x*x + 20*x*x + 5*x + 7)}`  
 和  
-    hillClimbing(f, 4.0)  
+    `hillClimbing(f, 4.0)`  
+******************************
 得出運算結果  
     f(4.0000)=-37.0000  
     f(4.0100)=-37.5904  
