@@ -8,6 +8,7 @@ Debug
 
 # vscode
 .vs
+*.bak
 
 # Node rules:
 ## Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
@@ -43,11 +44,6 @@ _book
 # big file
 *.zip
 
-# image file
-*.jpg
-*.png
-*.bmp
-*.gif
 
 csharp
 csharpPhone

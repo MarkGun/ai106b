@@ -82,8 +82,8 @@ function NeuralNet() {
     return this;
   }
 
-  // update() : 計算網路的輸出的函數
-  this.update=function(inputs) {
+  // forward() : 計算網路的輸出的函數
+  this.forward=function(inputs) {
     // input activations : 設定輸入值
     for (var i=0; i<this.ni-1; i++)
       this.ai[i] = inputs[i];
@@ -107,8 +107,8 @@ function NeuralNet() {
     return this.ao; // 傳回輸出層輸出值 ao
   }
 
-  // backPropagate()：反傳遞學習的函數 (重要)
-  this.backPropagate = function(targets, rate, moment) {
+  // backward()：反傳遞學習的函數 (重要)
+  this.backward = function(targets, rate, moment) {
     // calculate error terms for output : 計算輸出層誤差
     var output_deltas = makeArray(this.no, 0.0);
     for (var k=0; k<this.no; k++) {
@@ -158,13 +158,13 @@ function NeuralNet() {
     for (var p in patterns) {
       var inputs = patterns[p][0];
       var outputs= patterns[p][1];
-      log("%j -> [%s] [%s]", inputs, numbersToStr(this.update(inputs), 0), numbersToStr(outputs, 0));
+      log("%j -> [%s] [%s]", inputs, numbersToStr(this.forward(inputs), 0), numbersToStr(outputs, 0));
       // this.dump();
     }
   }
 
-    // train(): 主要學習函數，反覆呼叫反傳遞算法
-    // 參數：rate: learning rate (學習速率), moment: momentum factor (動量常數)
+  // train(): 主要學習函數，反覆呼叫反傳遞算法
+  // 參數：rate: learning rate (學習速率), moment: momentum factor (動量常數)
   this.train=function(patterns, iterations, rate, moment) {
     for (var i=0; i<iterations; i++) {
       var error = 0.0;
@@ -172,8 +172,8 @@ function NeuralNet() {
         var pat=patterns[p];
         var inputs = pat[0];
         var targets = pat[1];
-        var outputs = this.update(inputs);
-        error = error + this.backPropagate(targets, rate, moment);
+        var outputs = this.forward(inputs);
+        error = error + this.backward(targets, rate, moment);
       }
       if (i % 100 == 0)
         log('%d:error %j', i, error);
